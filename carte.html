@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="logo randomap (1).png">
+    <link href="./index.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Randomap</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        #map { height: 500px; width: 80%; max-width: 900px; margin: 20px auto; border: 2px solid #001876; border-radius: 8px; }
+        #form-rando-container { display: none; width: 80%; max-width: 400px; margin: 0 auto 30px auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .form-group input { padding: 10px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 10px; width: 90%;}
+    </style>
+</head>
+<body>
+    <nav>	
+        <br>
+        <div>
+            <img src="logo randomap (1).png" height="100">
+            <a href="./index.html">Accueil</a>
+            <a href="./carte.html">Carte des randonnées</a>
+            <a href="./contact.html">Contact</a>
+			<a href="./connexion.html">Connexion</a>
+            <span id="auth-link"></span>
+        </div>
+    </nav>
+    <section class="imagefond">
+        <h1>La carte des randonnées</h1>
+                
+                
+        <div id="form-rando-container">
+            <h3>Ajouter une Randonnée</h3>
+            <div class="form-group">
+                <input type="text" id="nom-rando" placeholder="Nom de la randonnée" required>
+                <input type="text" id="lieu-rando" placeholder="Lieu (ex: Montpellier)" required>
+                <br>
+                <button id="btn-ajouter">Publier sur la carte</button>
+                <p id="message-map"></p>    
+            </div>
+        </div>
+          <div id="myMap" style="width: 100%; height: 450px;">
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+<div id='map'></div>
+        </div>
+    </section>
+    
+    
+    <script src="./index.js"></script>
+</body>
+</html>

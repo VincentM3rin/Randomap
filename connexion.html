@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="logo randomap (1).png">
+    <link href="./index.css" rel="stylesheet" />
+    <link href="./connexion.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Randomap</title>
+</head>
+<body>
+    <nav>	
+        <br>
+        <div>
+            <img src="logo randomap (1).png" height="100">
+            <a href="./index.html">Accueil</a>
+            <a href="./carte.html">Carte des randonnées</a>
+            <a href="./contact.html">Contact</a>
+            <a href="./connexion.html">Connexion</a>
+            <span id="auth-link"></span>
+        </div>
+    </nav>
+    <section class="imagefond">
+        <h1>Bienvenue</h1>
+        <h2>Rejoignez l'aventure Randomap</h2>
+        <p id="auth-message"></p>
+        
+        <form id="login-form">
+            <div>
+                <input type="text" id="nomUser" placeholder="Nom d'utilisateur" required>
+            </div>
+            <div>
+                <input type="password" id="mdpUser" placeholder="Mot de passe" required>
+            </div>
+            <div>
+                <button type="button" id="btn-login" >Se connecter</button>
+                <button type="button" id="btn-register">Créer un compte</button>
+            </div>
+        </form>
+        <img src="logo randomap (1).png" height="300px">
+    </section>
+    
+    <script src="./connexion.js"></script>
+</body>
+</html>

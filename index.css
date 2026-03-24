@@ -1,0 +1,238 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #212529;
+    align-items: center;
+}
+
+nav {
+    color: white;
+    display: flex;
+    background-color: #005122;
+    align-items: center;
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+embed {
+    size: 200vb;
+}
+
+nav > a {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-right: 1rem;
+}
+
+nav div {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+}
+
+nav div img {
+    margin-right: auto;
+}
+
+nav div a {
+    margin-left: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+    font-size: 1.2rem;
+}
+
+nav div a:hover, .active {
+    color: #6c757d;
+    font-weight: bold;
+}
+
+a {
+    text-align: #001876;
+}
+
+#College {
+    margin-right: 1em;
+    object-fit: none;
+    object-position: left bottom;
+}
+
+#Lycee { 
+    margin-right: 1em;
+    object-fit: none;
+    object-position: right bottom;
+}
+.imagefond { 
+  
+  background-image: url("fondcarte.jpg");
+  height: 700px;
+ 
+}
+
+h1 {
+    margin: 0.5em 0;
+    color: #005122;
+    font-size: 3rem;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s;
+}
+
+img {
+    text-align: center;
+}
+
+a:hover {
+    color: #17a2b8;
+}
+
+section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0;
+}
+
+.presContent p {
+    margin: 0 10%;
+    color: #495057;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.contContent {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.contContent > div {
+    box-sizing: border-box;
+    flex: 1 1 calc(25% - 1rem);
+    max-width: calc(25% - 1rem);
+    margin: 1rem;
+}
+
+.contContent > div > div {
+    display: flex;
+    flex-direction: column;
+    background-color: #17a2b8;
+    border-radius: 5px;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.contContent > div > div:hover {
+    transform: translateY(-5px);
+}
+
+a.href {
+    color: #000c3d;
+}
+
+.contContent > div > div > div:nth-child(1) {
+    padding: 1rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+    background-color: #138496;
+}
+
+.contContent > div > div > div:nth-child(2) {
+    padding: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.contContent > div > div > div:nth-child(3) {
+    padding: 0.75rem 1rem;
+    background-color: #138496;
+    text-align: center;
+}
+
+.btn-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    max-width: 800px;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.btn-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    min-width: 200px;
+    background-color: #001876;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #0020b8;
+    color: #fff;
+}
+
+@media (max-width: 600px) {
+    .btn-row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn-col {
+        width: 100%;
+        align-items: center;
+    }
+}
+
+@media (max-width: 500px) {
+    .btn-row {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+    }
+}
+
+@media (max-width: 1336px) {
+    .contContent > div {
+        flex: 1 1 calc(33.33% - 1rem);
+        max-width: calc(33.33% - 1rem);
+    }
+}
+
+@media (max-width: 1006px) {
+    .contContent > div {
+        flex: 1 1 calc(50% - 1rem);
+        max-width: calc(50% - 1rem);
+    }
+}
+
+@media (max-width: 676px) {
+    .contContent > div {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+}
