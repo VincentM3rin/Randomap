@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="logo randomap (1).png">
+    <link href="./index.css" rel="stylesheet" />
+    <title>Randomap</title>
+</head>
+<body>
+    <nav>
+        <div>
+            <img src="logo randomap (1).png" height="100">
+            <a href="./index.html">Accueil</a>
+            <a href="./carte.html">Carte</a>
+            <a href="./contact.html">Contact</a>
+            <a href="./index.html" style="margin-left: auto;">Deconnexion</a>
+        </div>
+    </nav>
+    <section class="imagefond">
+        <h1 style="color: white;">Créé une randonnée</h1>
+        <form id="formRando" class="form-rando">
+            <label>Ville de départ :</label>
+            <input type="text" id="ville_depart" required>
+            
+            <label>Nombre de kilomètres :</label>
+            <input type="number" id="km" step="0.1" required>
+            
+            <label>Comment est le parcours?</label>
+            <div class="flex-row">
+                <label><input type="radio" name="type" value="AB" id="radioAB"> D'un point A à un point B</label>
+                <label><input type="radio" name="type" value="Boucle" id="radioBoucle" checked> Retour au même point</label>
+            </div>
+            
+            <div id="div_arrivee" class="hidden" style="display: flex; flex-direction: column; gap: 20px;">
+                <label>Ville d'arrivée</label>
+                <input type="text" id="ville_arrivee">
+            </div>
+            
+            <input type="file" id="photo" accept="image/*" style="display: none;">
+            <button type="button" class="btn-custom" onclick="document.getElementById('photo').click()">Importez photos</button>
+            
+            <button type="submit" class="btn-custom">Envoyez</button>
+        </form>
+    </section>
+    <script src="./creerjs"></script>
+</body>
+</html>

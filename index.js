@@ -1,22 +1,28 @@
-  var locations = [
-    ["LOCATION_1", 43.300000, 5.400000],
-    ["LOCATION_2", 43.4539098, 5.5608088],
-    ["LOCATION_3", 43.5298424, 5.4474738],
-    ["LOCATION_4", 43.455613, 5.4710661],
-    ["LOCATION_5", 43.5374662, 6.4627333]
-  ];
+document.addEventListener('DOMContentLoaded', () => {
+    const mapElement = document.getElementById('map');
+    
+    if (mapElement) {
+        var map = L.map('map').setView([46.603354, 1.888334], 5);
 
-  var map = L.map('map').setView([43.300000, 5.400000], 8);
-    mapLink =
-  ' <a href="http://openstreetmap.org">OpenStreetMap</a>';
-    L.tileLayer(
-    'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; ' + mapLink + ' Contributors',
-    maxZoom: 18,
-  }).addTo(map);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> Contributors',
+            maxZoom: 18,
+        }).addTo(map);
 
-for (var i = 0; i < locations.length; i++) {
-  marker = new L.marker([locations[i][1], locations[i][2]])
-    .bindPopup(locations[i][0])
-    .addTo(map);
-}
+        fetch('recuperer_randos.php')
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(rando => {
+                    const lat = parseFloat(rando.latRandoDepart);
+                    const lon = parseFloat(rando.longRandoDepart);
+                    
+                    if (!isNaN(lat) && !isNaN(lon)) {
+                        L.marker([lat, lon])
+                            .bindPopup(`<b>${rando.nomRandonné}</b><br>Départ : ${rando.villeRandonné}`)
+                            .addTo(map);
+                    }
+                });
+            })
+            .catch(error => console.error(error));
+    }
+});
