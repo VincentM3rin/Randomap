@@ -1,28 +1,26 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const mapElement = document.getElementById('map');
+var map = L.map('map').setView([47.12811812018029, 2.402549683534604], 5);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+}).addTo(map);
+
+var control = L.Routing.control({
+    waypoints: [], 
+    router: L.Routing.osrmv1({
+        serviceUrl: 'https://routing.openstreetmap.de/routed-foot/route/v1',
+        profile: 'driving', 
+        language: 'fr'
+    }),
+    routeWhileDragging: true,
+    addWaypoints: false 
+}).addTo(map);
+
+map.on('click', function(e) {
+    var waypoints = control.getWaypoints();
+    var validWaypoints = waypoints.filter(function(wp) {
+        return wp.latLng !== null;
+    });
+    validWaypoints.push(L.Routing.waypoint(e.latlng));
     
-    if (mapElement) {
-        var map = L.map('map').setView([46.603354, 1.888334], 5);
-
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> Contributors',
-            maxZoom: 18,
-        }).addTo(map);
-
-        fetch('recuperer_randos.php')
-            .then(response => response.json())
-            .then(data => {
-                data.forEach(rando => {
-                    const lat = parseFloat(rando.latRandoDepart);
-                    const lon = parseFloat(rando.longRandoDepart);
-                    
-                    if (!isNaN(lat) && !isNaN(lon)) {
-                        L.marker([lat, lon])
-                            .bindPopup(`<b>${rando.nomRandonné}</b><br>Départ : ${rando.villeRandonné}`)
-                            .addTo(map);
-                    }
-                });
-            })
-            .catch(error => console.error(error));
-    }
+    control.setWaypoints(validWaypoints);
 });
