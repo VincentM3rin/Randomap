@@ -106,3 +106,56 @@ form input {
     border-radius: 5px;
     box-sizing: border-box; 
 }
+
+.btn-row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    max-width: 800px;
+    width: 100%;
+    margin-top: 3rem;
+}
+
+.btn-col {
+    flex: 1 1 30%;
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0.75rem 1.8rem;
+    min-width: 200px;
+    height: 50px;
+    background-color: #005122;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
+    white-space: nowrap;
+}
+
+.btn:hover {
+    background-color: #007330;
+    color: #fff;
+}
+
+@media (max-width: 600px) {
+    .btn-row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn-col {
+        width: 100%;
+        flex: none;
+    }
+}
