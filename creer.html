@@ -22,24 +22,43 @@
     <section class="imagefond">
         <h1></h1>
         <form id="formRando" class="form-rando">
+            <input type="hidden" id="rando-id" value="">
+            
             <label>Nom du parcours :</label>
-            <input type="text" id="ville_depart" required>
+            <input type="text" id="nom_parcours" required>
 
             <label>Ville de départ :</label>
             <input type="text" id="ville_depart" required>
             
             <label>Nombre de kilomètres :</label>
             <input type="number" id="km" step="0.1" required>
+
+            <label>Type de lieu :</label>
+            <select id="idTypeLieu" required>
+                <option value="1">Montagne</option>
+                <option value="2">Plaine</option>
+                <option value="3">Forêt</option>
+                <option value="4">Bord de mer</option>
+            </select>
+
+            <label>Difficulté :</label>
+            <select id="idDiff" required>
+                <option value="1">Très facile</option>
+                <option value="2">Facile</option>
+                <option value="3">Moyen</option>
+                <option value="4">Difficile</option>
+                <option value="5">Très difficille</option>
+            </select>
              
             <fieldset>
-                <legend>Comment est le parcous ?</legend>
+                <legend>Comment est le parcours ?</legend>
                 <div>
-                    <input type="checkbox" id="scales" name="scales" checked />
+                    <input type="radio" id="scales" name="type_parcours" value="A_vers_B" checked />
                     <label for="scales">D'un point A à un point B</label>
                 </div>
 
                 <div>
-                    <input type="checkbox" id="horns" name="horns" />
+                    <input type="radio" id="horns" name="type_parcours" value="Boucle" />
                     <label for="horns">Retour au même point</label>
                 </div>
             </fieldset>
@@ -51,7 +70,7 @@
 
             <label>Image :</label>
             <input type="file" id="photoFile" accept="image/*">
-            <button type="submit" class="btn-custom">Envoyez</button>
+            <button type="submit" id="btn-submit" class="btn-custom">Envoyer</button>
         </form>
     </section>
     

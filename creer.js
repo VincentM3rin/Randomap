@@ -4,52 +4,50 @@ const authConnecte = localStorage.getItem('estConnecte') === 'true';
 const authIdUser = localStorage.getItem('idUser');
 
 const sectionAdmin = document.getElementById('section-admin');
-const formActu = document.getElementById('form-actu');
-const conteneurActus = document.getElementById('conteneur-toutes-actualites');
-
-const fileInput = document.getElementById('photoFile');
-
-if (fileInput.files.length > 0) {
-    formData.append('photoFile', fileInput.files[0]);
-}
+const formRando = document.getElementById('formRando');
 
 if (authConnecte && sectionAdmin) {
     sectionAdmin.style.display = 'block';
 }
 
-if (formActu) {
-    formActu.addEventListener('submit', (e) => {
+if (formRando) {
+    formRando.addEventListener('submit', (e) => {
         e.preventDefault();
-        const id = document.getElementById('actu-id').value;
+        
+        const id = document.getElementById('rando-id').value;
         const action = id ? 'edit' : 'add';
-        const fileInput = document.getElementById('actu-photo');
+        const fileInput = document.getElementById('photoFile');
 
         const formData = new FormData();
         formData.append('action', action);
-        formData.append('idUser', authIdUser);
-        formData.append('titre', document.getElementById('actu-titre').value);
-        formData.append('description', document.getElementById('actu-desc').value);
+        formData.append('idUser', authIdUser || 0);
+        formData.append('nomRandonné', document.getElementById('nom_parcours').value);
+        formData.append('villeRandonné', document.getElementById('ville_depart').value);
+        formData.append('nombreKilomètres', document.getElementById('km').value);
+        formData.append('villeArrivee', document.getElementById('ville_arrivee').value);
+        formData.append('idTypeLieu', document.getElementById('idTypeLieu').value);
+        formData.append('idDiff', document.getElementById('idDiff').value);
 
         if (id) {
             formData.append('id', id);
         }
 
         if (fileInput.files.length > 0) {
-            formData.append('photo', fileInput.files[0]);
+            formData.append('photoRandonné', fileInput.files[0]);
         } else if (action === 'add') {
             alert("Veuillez sélectionner une image.");
             return;
         }
 
-        fetch(API_ACTU, {
+        fetch(ADMIN_API_BASE, {
             method: 'POST',
             body: formData 
         }).then(res => res.json()).then(data => {
             if(data.success) {
-                formActu.reset();
-                document.getElementById('actu-id').value = '';
-                document.getElementById('btn-submit').innerText = "Ajouter l'actualité";
-                chargerToutesActualites();
+                formRando.reset();
+                document.getElementById('rando-id').value = '';
+                document.getElementById('btn-submit').innerText = "Envoyer";
+                alert("Parcours enregistré avec succès !");
             } else {
                 alert("Erreur lors de l'opération : " + (data.error || "Inconnue"));
             }
@@ -59,23 +57,3 @@ if (formActu) {
         });
     });
 }
-
-window.supprimerActu = function(id) {
-    if(confirm("Confirmer la suppression ? L'image sera également effacée du serveur.")) {
-        fetch(API_ACTU, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ action: 'delete', id: id })
-        }).then(() => chargerToutesActualites());
-    }
-}
-
-window.editerActu = function(id, titre, desc) {
-    document.getElementById('actu-id').value = id;
-    document.getElementById('actu-titre').value = titre;
-    document.getElementById('actu-desc').value = desc;
-    document.getElementById('btn-submit').innerText = "Enregistrer la modification";
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-chargerToutesActualites();
