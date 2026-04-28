@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
             waypoints: [], 
             router: L.Routing.osrmv1({
                 serviceUrl: 'https://routing.openstreetmap.de/routed-foot/route/v1',
-                profile: 'driving', 
+                profile: 'pedestrian', 
                 language: 'fr'
             }),
             routeWhileDragging: true,
