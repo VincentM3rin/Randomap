@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <link rel="icon" type="image/x-icon" href="logo randomap (1).png">
     <link href="./index.css" rel="stylesheet" />
+    <link href="./creer.css" rel="stylesheet" />
     <title>Rando'map</title>
 </head>
 <body>
@@ -26,11 +27,27 @@
             
             <label>Nombre de kilomètres :</label>
             <input type="number" id="km" step="0.1" required>
-            
+             
+            <fieldset>
+                <legend>Comment est le parcous ?</legend>
+                <div>
+                    <input type="checkbox" id="scales" name="scales" checked />
+                    <label for="scales">D'un point A à un point B</label>
+                </div>
+
+                <div>
+                    <input type="checkbox" id="horns" name="horns" />
+                    <label for="horns">Retour au même point</label>
+                </div>
+            </fieldset>
+
             <div id="div_arrivee">
-                <label>Ville d'arrivée</label>
+                <label>Ville d'arrivée (Si point A à point B)</label>
                 <input type="text" id="ville_arrivee">
             </div>
+
+            <label>Image :</label>
+            <input type="file" id="photoFile" accept="image/*">
             <button type="submit" class="btn-custom">Envoyez</button>
         </form>
     </section>

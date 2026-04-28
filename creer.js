@@ -7,6 +7,12 @@ const sectionAdmin = document.getElementById('section-admin');
 const formActu = document.getElementById('form-actu');
 const conteneurActus = document.getElementById('conteneur-toutes-actualites');
 
+const fileInput = document.getElementById('photoFile');
+
+if (fileInput.files.length > 0) {
+    formData.append('photoFile', fileInput.files[0]);
+}
+
 if (authConnecte && sectionAdmin) {
     sectionAdmin.style.display = 'block';
 }
