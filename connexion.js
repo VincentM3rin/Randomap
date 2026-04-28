@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            const response = await fetch('http://localhost/Randomap/inscription.php', {
+            const response = await fetch('http://localhost/Randomap/connexion.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -31,6 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (data.success) {
                 if (typeAction === 'login') {
+                    localStorage.setItem('estConnecte', 'true');
+                    localStorage.setItem('nomUtilisateur', nomUserInput);
                     window.location.href = 'profil.html';
                 } else {
                     authMessage.textContent = data.message;

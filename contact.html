@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
   	<link rel="icon" type="image/x-icon" href="logo randomap (1).png">
@@ -9,20 +9,22 @@
     <title>Rando'map</title>
 </head>
 <body>
-		<nav>	
-			<br>
-			<div>
+    <nav>	
+        <br>
+        <div>
             <img src="logo randomap (1).png" height="100">
-				<a href="./index.html">Accueil</a>
-				<a href="./carte.html">Carte des randonnées</a>
-				<a href="./contact.html">Contact</a>
-				<a href="./connexion.html">Connexion</a>
-			</div>
-		</nav>
-		<section class="imagefond">
-			<h1>Contact</h1>
-			<h2>Des choses à améliorer ? Des bugs ? N'hésitez pas a remplir le formulaire !</h2>
-			<form id="contactForm" action="https://formspree.io/f/mlgpznkn" method="POST">
+            <a href="./index.html">Accueil</a>
+            <a href="./carte.html">Carte des randonnées</a>
+            <a href="./contact.html">Contact</a>
+            <a href="./connexion.html" id="nav-connexion">Connexion</a>
+            <a href="./profil.html" id="nav-profil" >Profil</a>
+            <a href="#" id="btn-logout">Deconnexion</a>
+        </div>
+    </nav>
+    <section class="imagefond">
+        <h1>Contact</h1>
+        <h2>Des choses à améliorer ? Des bugs ? N'hésitez pas a remplir le formulaire !</h2>
+        <form id="contactForm" action="https://formspree.io/f/mlgpznkn" method="POST">
             <ul>
                 <li>
                     <label for="name">Nom:</label>
@@ -42,7 +44,8 @@
             </ul>
         </form>
         <img src="contact.png" height="300">
-		</section>
-		<script src="contrat.js"></script>
+    </section>
+    
+    <script src="contrat.js"></script>
 </body>
 </html>

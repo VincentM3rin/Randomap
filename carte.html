@@ -4,13 +4,11 @@
     <meta charset="UTF-8">
     <link rel="icon" type="image/x-icon" href="logo randomap (1).png">
     <link href="./index.css" rel="stylesheet" />
+    <link href="./carte.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rando'map</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
-        #map { height: 500px; width: 80%; max-width: 900px; margin: 20px auto; border: 2px solid #001876; border-radius: 8px; }
-        #form-rando-container { display: none; width: 80%; max-width: 400px; margin: 0 auto 30px auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .form-group input { padding: 10px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 10px; width: 90%;}
     </style>
 </head>
 <body>
@@ -21,23 +19,21 @@
             <a href="./index.html">Accueil</a>
             <a href="./carte.html">Carte des randonnées</a>
             <a href="./contact.html">Contact</a>
-			<a href="./connexion.html">Connexion</a>
-            <span id="auth-link"></span>
+            <a href="./connexion.html" id="nav-connexion">Connexion</a>
+            <a href="./profil.html" id="nav-profil">Profil</a>
+            <a href="#" id="btn-logout">Deconnexion</a>
         </div>
     </nav>
     <section class="imagefond">
         <h1>La carte des randonnées</h1>
-        </div>
-          <div id="myMap" style="width: 100%; height: 450px;">
-
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
-    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
-<div id='map'></div>
+        <div id="myMap" style="width: 100%; height: 450px;">
+            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+            <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+            <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+            <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+            <div id='map'></div>
         </div>
     </section>
-    
     
     <script src="./index.js"></script>
 </body>
