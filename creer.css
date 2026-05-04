@@ -11,3 +11,8 @@ label {
     sans-serif;
 }
 
+#affichageKm{
+  display: none; 
+  font-weight: bold; 
+  margin-bottom: 10px;
+}

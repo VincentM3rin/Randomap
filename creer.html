@@ -5,20 +5,22 @@
     <link rel="icon" type="image/x-icon" href="logo randomap (1).png">
     <link href="./index.css" rel="stylesheet" />
     <link href="./creer.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
     <title>Rando'map</title>
 </head>
 <body>
     <nav>
-        <br>
         <div>
             <img src="logo randomap (1).png" height="100">
             <a href="./index.html">Accueil</a>
             <a href="./carte.html">Carte des randonnées</a>
             <a href="./contact.html">Contact</a>
-            <a href="./creer.html" id="nav-profil">Création</a>
-            <a href="./liste.html" id="nav-profil">Liste</a>
-            <a href="./profil.html" id="nav-profil">Profil</a>
-            <a href="#" id="btn-logout">Deconnexion</a>
+            <a href="./connexion.html" id="pasconnecte">Connexion</a>
+            <a href="./creer.html" id="connecte">Création</a>
+            <a href="./liste.html" id="connecte">Liste</a>
+            <a href="./profil.html" id="connecte">Profil</a>
+            <a href="#" id="deconnexion">Deconnexion</a>
         </div>
     </nav>
     <section class="imagefond">
@@ -28,56 +30,46 @@
             
             <label>Nom du parcours :</label>
             <input type="text" id="nom_parcours" required>
-
             <label>Ville de départ :</label>
             <input type="text" id="ville_depart" required>
             
-            <label>Nombre de kilomètres :</label>
-            <input type="number" id="km" step="0.1" required>
-
             <label>Type de lieu :</label>
             <select id="idTypeLieu" required>
-                <option value="0">-------------------------------------Choisi le lieu-------------------------------------</option>
-                <option value="1">Montagne</option>
-                <option value="2">Plaine</option>
-                <option value="3">Forêt</option>
-                <option value="4">Bord de mer</option>
+                <option value="">-------------------------------------Choisi le lieu-------------------------------------</option>
             </select>
-
             <label>Difficulté :</label>
             <select id="idDiff" required>
-                <option value="0">--------------------------------Choisi la difficulté--------------------------------</option>
-                <option value="1">Très facile</option>
-                <option value="2">Facile</option>
-                <option value="3">Moyen</option>
-                <option value="4">Difficile</option>
-                <option value="5">Très difficille</option>
+                <option value="">--------------------------------Choisi la difficulté--------------------------------</option>
             </select>
-             
+            
             <fieldset>
                 <legend>Comment est le parcours ?</legend>
                 <div>
                     <input type="radio" id="scales" name="type_parcours" value="A_vers_B" checked />
                     <label for="scales">D'un point A à un point B</label>
                 </div>
-
                 <div>
                     <input type="radio" id="horns" name="type_parcours" value="Boucle" />
                     <label for="horns">Retour au même point</label>
                 </div>
             </fieldset>
-
             <div id="div_arrivee">
                 <label>Ville d'arrivée (Si point A à point B)</label>
                 <input type="text" id="ville_arrivee">
             </div>
 
+            <p id="affichageKm">Distance estimée : <span id="valeur_km">0</span> km</p>
+
             <label>Image :</label>
             <input type="file" id="photoFile" accept="image/*">
+
             <button type="submit" id="btn-submit" class="btn-custom">Envoyer</button>
         </form>
     </section>
     
+    <script src="./index.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
     <script src="./creer.js"></script>
     <script src="./profil.js"></script>
 </body>

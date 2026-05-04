@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (typeAction === 'login') {
                     localStorage.setItem('estConnecte', 'true');
                     localStorage.setItem('nomUtilisateur', nomUserInput);
+                    localStorage.setItem('idUser', data.idUser);
                     window.location.href = 'profil.html';
                 } else {
                     authMessage.textContent = data.message;
