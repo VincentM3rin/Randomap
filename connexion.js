@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
+
     const btnRegister = document.getElementById('btn-register');
     const btnLogin = document.getElementById('btn-login');
-    const authMessage = document.getElementById('auth-message'); 
+    const authMessage = document.getElementById('auth-message');
 
     async function gererAuthentification(typeAction) {
         const nomUserInput = document.getElementById('nomUser').value;
@@ -17,14 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const response = await fetch('http://localhost/Randomap/connexion.php', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    nomUser: nomUserInput,
-                    mdpUser: mdpUserInput,
-                    action: typeAction 
-                })
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ nomUser: nomUserInput, mdpUser: mdpUserInput, action: typeAction })
             });
 
             const data = await response.json();
@@ -33,8 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (typeAction === 'login') {
                     localStorage.setItem('estConnecte', 'true');
                     localStorage.setItem('nomUtilisateur', nomUserInput);
-                    localStorage.setItem('idUser', data.idUser);
-                    window.location.href = 'profil.html';
+                    localStorage.setItem('token_idUser', data.idUser); 
+                    
+                    window.location.href = 'liste.html';
                 } else {
                     authMessage.textContent = data.message;
                     authMessage.style.color = "green";

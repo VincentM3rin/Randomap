@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/x-icon" href="logo randomap (1).png">
+    <link rel="icon" type="image/x-icon" href="./image/logorandomap.png">
     <link href="./index.css" rel="stylesheet" />
     <link href="./creer.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -12,7 +12,7 @@
 <body>
     <nav>
         <div>
-            <img src="logo randomap (1).png" height="100">
+            <img src="./image/logorandomap.png" height="100">
             <a href="./index.html">Accueil</a>
             <a href="./carte.html">Carte des randonnées</a>
             <a href="./contact.html">Contact</a>
@@ -25,6 +25,7 @@
     </nav>
     <section class="imagefond">
         <h1></h1>
+        <div id="mapCreation" style="display: none;"></div>
         <form id="formRando" class="form-rando">
             <input type="hidden" id="rando-id" value="">
             

@@ -2,19 +2,17 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/x-icon" href="logo randomap (1).png">
+    <link rel="icon" type="image/x-icon" href="./image/logorandomap.png">
     <link href="./index.css" rel="stylesheet" />
     <link href="./carte.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rando'map</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <style>
-    </style>
 </head>
 <body>
-    <nav>	
+    <nav>
         <div>
-            <img src="logo randomap (1).png" height="100">
+            <img src="./image/logorandomap.png" height="100">
             <a href="./index.html">Accueil</a>
             <a href="./carte.html">Carte des randonnées</a>
             <a href="./contact.html">Contact</a>
@@ -28,19 +26,28 @@
     <section class="imagefond">
         <h1>La carte des randonnées</h1>
         <div id="myMap">
-            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
-            <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+            <link rel="stylesheet" href="./leaflet.css" />
+            <link rel="stylesheet" href="./leaflet-routing-machine.css" />
             <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
             <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
-            <div id='map'></div>
-  		<div class="btn-row">
-    		<div class="btn-col middle">
-      		    <a class="btn" href="./creer.html" id="nav-profil">Créer une randonnée</a>
-    		</div>
+            
+            <div id="carte-et-liste-container" class="map-list-wrapper">
+                <div class="map-col">
+                    <div id="map"></div>
+                </div>
+                <div class="list-col">
+                    <h3>Randonnées visibles</h3>
+                    <ul id="liste-randonnees-ul"></ul>
+                </div>
+            </div>
+        </div>
+        <div class="btn-row">
+            <div class="btn-col middle">
+                <a class="btn" href="./creer.html" id="nav-profil">Créer une randonnée</a>
+            </div>
         </div>
     </section>
     
     <script src="./index.js"></script>
-    
 </body>
 </html>

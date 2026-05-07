@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-  <link rel="icon" type="image/x-icon" href="logo randomap (1).png">
+    <link rel="icon" type="image/x-icon" href="./image/logorandomap.png">
     <link href="./index.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rando'map</title>
@@ -10,7 +10,7 @@
 <body onload="getData()">
     <nav>	
         <div>
-            <img src="logo randomap (1).png" height="100">
+            <img src="./image/logorandomap.png" height="100">
             <a href="./index.html">Accueil</a>
             <a href="./carte.html">Carte des randonnées</a>
             <a href="./contact.html">Contact</a>
@@ -23,7 +23,7 @@
     </nav>
     <section class="imagefond">
         <h1>La liste de vos randonnées</h1>
-    </section>
+        <button onclick="getData()">Voir la liste</button>
     <div>
         <table>
             <thead id="test">
@@ -32,13 +32,12 @@
                     <th id="villeRandonné">Ville Randonnée</th>
                     <th id="photoRandonné">Photo Randonné</th>
                     <th id="nombreKilomètres">Nombre Kilomètres</th>
-                    <th>Actions</th>
-                    
                 </tr>
             </thead>
             <tbody id="remplir"></tbody>
         </table>
     </div>
+    </section>
     <script src="./index.js"></script>
     <script src="./liste.js"></script>
     <script src="./profil.js"></script>

@@ -1,31 +1,74 @@
+#map {
+    height: 500px;
+    width: 100%;
+    border: 2px solid #001876;
+    border-radius: 8px;
+}
 
-#map { 
-    height: 500px; 
-    width: 80%; 
-    max-width: 900px; 
-    margin: 20px auto; 
-    border: 2px solid #001876; 
-    border-radius: 8px; 
+.map-list-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
 }
-#form-rando-container { 
-    display: none; 
-    width: 80%; 
-    max-width: 400px; 
-    margin: 0 auto 30px auto; 
-    background: white; 
-    padding: 20px; 
-    border-radius: 8px; 
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+
+.map-col {
+    flex: 2;
 }
-.form-group input { 
-    padding: 10px; 
-    border: 1px solid #ccc; 
-    border-radius: 4px; 
-    margin-bottom: 10px; 
+
+.list-col {
+    flex: 1;
+    height: 500px;
+    overflow-y: auto;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border: 2px solid #001876;
+}
+
+.list-col h3 {
+    margin-top: 0;
+    color: #005122;
+    font-size: 1.2rem;
+    border-bottom: 2px solid #ced4da;
+    padding-bottom: 10px;
+}
+
+#liste-randonnees-ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#liste-randonnees-ul li {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 0.9rem;
+}
+
+#form-rando-container {
+    display: none;
+    width: 80%;
+    max-width: 400px;
+    margin: 0 auto 30px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.form-group input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
     width: 90%;
 }
 
-#myMap{
-    width: 100%; 
+#myMap {
+    width: 100%;
     height: 450px;
 }

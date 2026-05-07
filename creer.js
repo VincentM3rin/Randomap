@@ -1,6 +1,6 @@
 const ADMIN_API_BASE = 'http://localhost/Randomap/adminCarte.php';
 const authConnecte = localStorage.getItem('estConnecte') === 'true';
-const authIdUser = localStorage.getItem('idUser');
+const authIdUser = localStorage.getItem('token_idUser');
 const sectionAdmin = document.getElementById('section-admin');
 const formRando = document.getElementById('formRando');
 
@@ -19,6 +19,25 @@ let mapCreation = null;
 let routingControlCreation = null;
 let distanceCalculee = 0;
 
+const iconeDepart = L.icon({
+    iconUrl: './image/logorandomap.png',
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32]
+});
+
+const iconeArrivee = L.icon({
+    iconUrl: './image/logoarrive.png',
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32]
+});
+
+const iconeEtape = L.icon({
+    iconUrl: './image/logoarrive.png',
+    iconSize: [20, 20]
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('mapCreation')) {
         mapCreation = L.map('mapCreation').setView([46.603354, 1.888334], 5);
@@ -32,18 +51,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const radioBoucle = document.getElementById('horns');
     const radioAversB = document.getElementById('scales');
     const divArrivee = document.getElementById('div_arrivee');
-    const affichageKm = document.getElementById('affichage_km');
+    const affichageKm = document.getElementById('affichageKm');
     const valeurKm = document.getElementById('valeur_km');
+    const btnSubmit = document.getElementById('btn-submit');
 
     async function updateMapAndDistance() {
         const villeDepart = villeDepartInput.value.trim();
         const villeArrivee = villeArriveeInput.value.trim();
         const isBoucle = radioBoucle.checked;
+        
+        btnSubmit.disabled = true;
 
         if (isBoucle) {
             distanceCalculee = 0;
-            affichageKm.style.display = 'none';
-            divArrivee.style.display = 'none';
+            if (affichageKm) affichageKm.style.display = 'none';
+            if (divArrivee) divArrivee.style.display = 'none';
+            
+            villeArriveeInput.value = "";
+            villeArriveeInput.disabled = true;
+
             if (routingControlCreation) {
                 mapCreation.removeControl(routingControlCreation);
                 routingControlCreation = null;
@@ -54,20 +80,20 @@ document.addEventListener('DOMContentLoaded', () => {
                     mapCreation.setView([coordDepart.lat, coordDepart.lon], 12);
                 }
             }
+            btnSubmit.disabled = false;
             return;
         }
 
-        divArrivee.style.display = 'block';
+        if (divArrivee) divArrivee.style.display = 'block';
+        villeArriveeInput.disabled = false;
 
         if (villeDepart && villeArrivee && mapCreation) {
             const coordDepart = await getCoordinates(villeDepart);
             const coordArrivee = await getCoordinates(villeArrivee);
-
             if (coordDepart && coordArrivee) {
                 if (routingControlCreation) {
                     mapCreation.removeControl(routingControlCreation);
                 }
-
                 routingControlCreation = L.Routing.control({
                     waypoints: [
                         L.latLng(coordDepart.lat, coordDepart.lon),
@@ -80,17 +106,28 @@ document.addEventListener('DOMContentLoaded', () => {
                     }),
                     addWaypoints: false,
                     routeWhileDragging: false,
-                    show: false
+                    show: false,
+                    createMarker: function(i, wp, nWps) {
+                        let iconActuelle = (i === 0) ? iconeDepart : ((i === nWps - 1) ? iconeArrivee : iconeEtape);
+                        return L.marker(wp.latLng, {
+                            draggable: true,
+                            icon: iconActuelle
+                        });
+                    }
                 }).addTo(mapCreation);
 
                 routingControlCreation.on('routesfound', function(e) {
                     distanceCalculee = (e.routes[0].summary.totalDistance / 1000).toFixed(1);
-                    valeurKm.textContent = distanceCalculee;
-                    affichageKm.style.display = 'block';
+                    if (valeurKm) valeurKm.textContent = distanceCalculee;
+                    if (affichageKm) affichageKm.style.display = 'block';
+                    btnSubmit.disabled = false;
                 });
+            } else {
+                btnSubmit.disabled = false;
             }
         } else {
-            affichageKm.style.display = 'none';
+            if (affichageKm) affichageKm.style.display = 'none';
+            btnSubmit.disabled = false;
         }
     }
 
@@ -128,20 +165,20 @@ document.addEventListener('DOMContentLoaded', () => {
     if (formRando) {
         formRando.addEventListener('submit', async (e) => {
             e.preventDefault();
-            
+
             if (!authConnecte || !authIdUser) {
                 alert("Erreur : Vous devez être connecté pour créer une randonnée.");
                 window.location.href = "connexion.html";
                 return;
             }
-            
+
             const id = document.getElementById('rando-id').value;
             const action = id ? 'edit' : 'add';
             const fileInput = document.getElementById('photoFile');
-            
+
             const villeDepart = document.getElementById('ville_depart').value;
             let villeArrivee = document.getElementById('ville_arrivee').value;
-            
+
             if (radioBoucle.checked) {
                 villeArrivee = villeDepart;
             }
@@ -157,20 +194,20 @@ document.addEventListener('DOMContentLoaded', () => {
             const formData = new FormData();
             formData.append('action', action);
             formData.append('idUser', authIdUser);
-            formData.append('nomRandonne', document.getElementById('nom_parcours').value);
-            formData.append('villeRandonne', villeDepart);
-            formData.append('nombreKilometres', distanceCalculee);
+            formData.append('nomRandonné', document.getElementById('nom_parcours').value);
+            formData.append('villeRandonné', villeDepart);
+            formData.append('nombreKilomètres', distanceCalculee);
             formData.append('idTypeLieu', document.getElementById('idTypeLieu').value);
             formData.append('idDiff', document.getElementById('idDiff').value);
             formData.append('latRandoDepart', coordDepart.lat);
             formData.append('longRandoDepart', coordDepart.lon);
-            
+
             if (coordArrivee && !radioBoucle.checked) {
-                formData.append('latRandoArrive', coordArrivee.lat);
-                formData.append('longRandoArrive', coordArrivee.lon);
+                formData.append('latRandoArrivé', coordArrivee.lat);
+                formData.append('longRandoArrivé', coordArrivee.lon);
             } else {
-                formData.append('latRandoArrive', coordDepart.lat);
-                formData.append('longRandoArrive', coordDepart.lon);
+                formData.append('latRandoArrivé', coordDepart.lat);
+                formData.append('longRandoArrivé', coordDepart.lon);
             }
 
             if (id) {
@@ -178,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             if (fileInput.files.length > 0) {
-                formData.append('photoRandonne', fileInput.files[0]);
+                formData.append('photoRandonné', fileInput.files[0]);
             } else if (action === 'add') {
                 alert("Veuillez sélectionner une image.");
                 return;
@@ -186,14 +223,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             fetch(ADMIN_API_BASE, {
                 method: 'POST',
-                body: formData 
+                body: formData
             }).then(res => res.json()).then(data => {
-                if(data.success) {
+                if (data.success) {
                     formRando.reset();
                     document.getElementById('rando-id').value = '';
                     document.getElementById('btn-submit').innerText = "Envoyer";
                     distanceCalculee = 0;
-                    affichageKm.style.display = 'none';
+                    if (affichageKm) affichageKm.style.display = 'none';
                     if (routingControlCreation) {
                         mapCreation.removeControl(routingControlCreation);
                         routingControlCreation = null;

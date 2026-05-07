@@ -238,9 +238,6 @@
 .leaflet-top .leaflet-routing-container.leaflet-routing-container-hide {
     margin-top: 10px !important;
 }
-.leaflet-right .leaflet-routing-container.leaflet-routing-container-hide {
-    margin-right: 10px !important;
-}
 .leaflet-bottom .leaflet-routing-container.leaflet-routing-container-hide {
     margin-bottom: 10px !important;
 }
