@@ -18,16 +18,28 @@ function getData() {
                 let p2 = document.createElement('td');
                 let p3 = document.createElement('td');
                 let p4 = document.createElement('td');
+                let p5 = document.createElement('td');
+                let p6 = document.createElement('td');
                 
                 p1.textContent = randonne.nomRandonné;
                 p2.textContent = randonne.villeRandonné;
-                p3.textContent = randonne.photoRandonné;
-                p4.textContent = randonne.nombreKilomètres; 
+                
+                let img = document.createElement('img');
+                img.src = "http://localhost/Randomap/uploads/" + randonne.photoRandonné;
+                
+                
+                p3.appendChild(img);
+                
+                p4.textContent = randonne.libelTypeLieu;
+                p5.textContent = randonne.LibelDiff;
+                p6.textContent = randonne.nombreKilomètres + " km"; 
                                  
                 node.appendChild(p1);
                 node.appendChild(p2);
                 node.appendChild(p3);
                 node.appendChild(p4);
+                node.appendChild(p5);
+                node.appendChild(p6);
                 list.appendChild(node);
             });
         })

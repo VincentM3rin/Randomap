@@ -15,22 +15,23 @@
             <a href="./carte.html">Carte des randonnées</a>
             <a href="./contact.html">Contact</a>
             <a href="./connexion.html" id="pasconnecte">Connexion</a>
-            <a href="./creer.html" id="connecte">Création</a>
-            <a href="./liste.html" id="connecte">Liste</a>
-            <a href="./profil.html" id="connecte">Profil</a>
-            <a href="#" id="deconnexion">Deconnexion</a>
+            <a href="./creer.html" class="connecte">Création</a>
+            <a href="./liste.html" class="connecte">Liste</a>
+            <a href="./profil.html" class="connecte">Profil</a>
+            <a href="#" id="deconnexion" class="connecte">Deconnexion</a>
         </div>
     </nav>
     <section class="imagefond">
         <h1>La liste de vos randonnées</h1>
-        <button onclick="getData()">Voir la liste</button>
     <div>
         <table>
             <thead id="test">
                 <tr>
                     <th id="nomRandonné">Nom Randonné</th>
                     <th id="villeRandonné">Ville Randonnée</th>
-                    <th id="photoRandonné">Photo Randonné</th>
+                    <th id="photoRandonné">Photo Randonnée</th>
+                    <th id="libelTypeLieu">Type Randonnée</th>
+                    <th id="LibelDiff">Difficulé Randonnée</th>
                     <th id="nombreKilomètres">Nombre Kilomètres</th>
                 </tr>
             </thead>

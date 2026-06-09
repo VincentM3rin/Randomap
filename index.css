@@ -153,9 +153,12 @@ form input {
         flex-direction: column;
         align-items: center;
     }
-
     .btn-col {
         width: 100%;
         flex: none;
     }
+}
+
+.connecte {
+    display: none;
 }

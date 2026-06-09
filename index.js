@@ -1,4 +1,33 @@
 document.addEventListener('DOMContentLoaded', async () => {
+    const lienConnexion = document.getElementById('pasconnecte');
+    const liensConnectes = document.querySelectorAll('.connecte');
+    const btnDeconnexion = document.getElementById('deconnexion');
+    const estConnecte = localStorage.getItem('estConnecte') === 'true';
+
+    if (estConnecte) {
+        if (lienConnexion) {
+            lienConnexion.style.display = 'none';
+        }
+        liensConnectes.forEach(lien => {
+            lien.style.display = 'inline-block';
+        });
+    } else {
+        if (lienConnexion) {
+            lienConnexion.style.display = 'inline-block';
+        }
+        liensConnectes.forEach(lien => {
+            lien.style.display = 'none';
+        });
+    }
+
+    if (btnDeconnexion) {
+        btnDeconnexion.addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.clear();
+            window.location.reload();
+        });
+    }
+
     const iconeDepart = L.icon({
         iconUrl: './image/logorandomap.png',
         iconSize: [32, 32],
@@ -7,12 +36,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     const iconeArrivee = L.icon({
-        iconUrl: './image/logoarrivepng',
-        iconSize: [32, 32],
-        iconAnchor: [16, 32],
+        iconUrl: './image/logoarrive.png',
+        iconSize: [64, 64],
+        iconAnchor: [32, 32],
         popupAnchor: [0, -32]
     });
-
     const iconeEtape = L.icon({
         iconUrl: './image/logoarrive.png',
         iconSize: [20, 20]
@@ -121,35 +149,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
             validWaypoints.push(L.Routing.waypoint(e.latlng));
             control.setWaypoints(validWaypoints);
-        });
-    }
-
-    const lienConnexion = document.getElementById('pasconnecte');
-    const liensConnectes = document.querySelectorAll('.connecte');
-    const btnDeconnexion = document.getElementById('deconnexion');
-    const estConnecte = localStorage.getItem('estConnecte') === 'true';
-
-    if (estConnecte) {
-        if (lienConnexion) {
-            lienConnexion.style.display = 'none';
-        }
-        liensConnectes.forEach(lien => {
-            lien.style.display = 'inline-block';
-        });
-    } else {
-        if (lienConnexion) {
-            lienConnexion.style.display = 'inline-block';
-        }
-        liensConnectes.forEach(lien => {
-            lien.style.display = 'none';
-        });
-    }
-
-    if (btnDeconnexion) {
-        btnDeconnexion.addEventListener('click', (e) => {
-            e.preventDefault();
-            localStorage.clear();
-            window.location.reload();
         });
     }
 });
